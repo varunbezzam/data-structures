@@ -72,6 +72,22 @@ class BST
                 root = root->left;
             return root->data;
         }
+
+        int findMax(BST *root)
+        {
+            while(root->right != NULL)
+                root = root->right;
+            return root->data;
+        }
+
+        bool isBST(BST *root,int min,int max)
+        {
+            if(root == NULL)
+                return true;
+            if(root->data < min || root->data > max)
+                return false;
+            return isBST(root->left,min,root->data) && isBST(root->right,root->data,max);
+        }
         BST *deleter(BST *root,int data)
         {
             if(root == NULL)
